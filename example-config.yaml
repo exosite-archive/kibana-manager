@@ -1,0 +1,10 @@
+openshift:
+  api_base_url: https://openshift.example.com:8443
+  access_token: blahblahblah
+elasticsearch:
+  base_url: https://search-cluster.example.com:9201
+  client_cert_path: /path/to/client.crt
+  client_key_path: /path/to/client.key
+protected_patterns:
+  - logstash-*
+ca_cert_path: /path/to/cacert.pem
