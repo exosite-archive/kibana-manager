@@ -54,8 +54,8 @@ OPENSHIFT_HEADERS = {
 
 def get_namespaces():
     s = requests.Session()
-    if 'ca_cert_path' in config['elasticsearch']:
-        s.verify = config['elasticsearch']['ca_cert_path']
+    if 'ca_cert_path' in config['openshift']:
+        s.verify = config['openshift']['ca_cert_path']
     r = s.get(NAMESPACES_URL, headers=OPENSHIFT_HEADERS)
     if r.status_code == 200:
         obj = r.json()
@@ -64,8 +64,8 @@ def get_namespaces():
 
 def main():
     s = requests.Session()
-    if 'ca_cert_path' in config['openshift']:
-        s.verify = config['openshift']['ca_cert_path']
+    if 'ca_cert_path' in config['elasticsearch']:
+        s.verify = config['elasticsearch']['ca_cert_path']
     while True:
         namespaces = get_namespaces()
         r = s.get(ELASTICSEARCH_QUERY_URL, cert=(ELASTICSEARCH_CLIENT_CERT_PATH, ELASTICSEARCH_CLIENT_KEY_PATH))
