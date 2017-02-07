@@ -52,6 +52,181 @@ OPENSHIFT_HEADERS = {
 	'Accept': 'application/json',
     }
 
+# I sure hope this doesn't change with every OpenShift release...
+DEFAULT_FIELDS = [
+    {
+        "name": "_index",
+        "type": "string",
+        "count": 0,
+        "scripted": false,
+        "indexed": false,
+        "analyzed": false,
+        "doc_values": false
+    },
+    {
+        "name": "docker_container_id",
+        "type": "string",
+        "count": 0,
+        "scripted": false,
+        "indexed": true,
+        "analyzed": true,
+        "doc_values": false
+    },
+    {
+        "name": "kubernetes_labels_app",
+        "type": "string",
+        "count": 0,
+        "scripted": false,
+        "indexed": true,
+        "analyzed": true,
+        "doc_values": false
+    },
+    {
+        "name": "kubernetes_namespace_id",
+        "type": "string",
+        "count": 0,
+        "scripted": false,
+        "indexed": true,
+        "analyzed": true,
+        "doc_values": false
+    },
+    {
+        "name": "hostname",
+        "type": "string",
+        "count": 0,
+        "scripted": false,
+        "indexed": true,
+        "analyzed": true,
+        "doc_values": false
+    },
+    {
+        "name": "kubernetes_labels_deploymentconfig",
+        "type": "string",
+        "count": 0,
+        "scripted": false,
+        "indexed": true,
+        "analyzed": true,
+        "doc_values": false
+    },
+    {
+        "name": "message",
+        "type": "string",
+        "count": 0,
+        "scripted": false,
+        "indexed": true,
+        "analyzed": true,
+        "doc_values": false
+    },
+    {
+        "name": "version",
+        "type": "string",
+        "count": 0,
+        "scripted": false,
+        "indexed": true,
+        "analyzed": true,
+        "doc_values": false
+    },
+    {
+        "name": "kubernetes_pod_name",
+        "type": "string",
+        "count": 0,
+        "scripted": false,
+        "indexed": true,
+        "analyzed": true,
+        "doc_values": false
+    },
+    {
+        "name": "kubernetes_namespace_name",
+        "type": "string",
+        "count": 0,
+        "scripted": false,
+        "indexed": true,
+        "analyzed": true,
+        "doc_values": false
+    },
+    {
+        "name": "kubernetes_labels_deployment",
+        "type": "string",
+        "count": 0,
+        "scripted": false,
+        "indexed": true,
+        "analyzed": true,
+        "doc_values": false
+    },
+    {
+        "name": "kubernetes_container_name",
+        "type": "string",
+        "count": 0,
+        "scripted": false,
+        "indexed": true,
+        "analyzed": true,
+        "doc_values": false
+    },
+    {
+        "name": "kubernetes_pod_id",
+        "type": "string",
+        "count": 0,
+        "scripted": false,
+        "indexed": true,
+        "analyzed": true,
+        "doc_values": false
+    },
+    {
+        "name": "_source",
+        "type": "_source",
+        "count": 0,
+        "scripted": false,
+        "indexed": false,
+        "analyzed": false,
+        "doc_values": false
+    },
+    {
+        "name": "time",
+        "type": "date",
+        "count": 0,
+        "scripted": false,
+        "indexed": true,
+        "analyzed": false,
+        "doc_values": true
+    },
+    {
+        "name": "kubernetes_host",
+        "type": "string",
+        "count": 0,
+        "scripted": false,
+        "indexed": true,
+        "analyzed": true,
+        "doc_values": false
+    },
+    {
+        "name": "_id",
+        "type": "string",
+        "count": 0,
+        "scripted": false,
+        "indexed": false,
+        "analyzed": false,
+        "doc_values": false
+    },
+    {
+        "name": "_type",
+        "type": "string",
+        "count": 0,
+        "scripted": false,
+        "indexed": false,
+        "analyzed": false,
+        "doc_values": false
+    },
+    {
+        "name": "_score",
+        "type": "number",
+        "count": 0,
+        "scripted": false,
+        "indexed": false,
+        "analyzed": false,
+        "doc_values": false
+    }
+]
+
 def get_namespaces():
     s = requests.Session()
     if 'ca_cert_path' in config['openshift']:
@@ -79,7 +254,9 @@ def main():
                 url = ELASTICSEARCH_URL_PATTERN.format(ns)
                 cert_and_key = (ELASTICSEARCH_CLIENT_CERT_PATH, ELASTICSEARCH_CLIENT_KEY_PATH)
                 content = {'title' : ns+'.*',
-                           'timeFieldName': 'time'}
+                           'timeFieldName': 'time',
+                           'fields': DEFAULT_FIELDS,
+                }
                 r = s.put(url, cert=cert_and_key, data=json.dumps(content))
                 if r.status_code != 200 and r.status_code != 201:
                     print("Failed to create Kibana index pattern for OpenShift namespace {0} (response code {1})".format(ns, r.status_code), file=sys.stderr)
