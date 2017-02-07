@@ -255,7 +255,7 @@ def main():
                 cert_and_key = (ELASTICSEARCH_CLIENT_CERT_PATH, ELASTICSEARCH_CLIENT_KEY_PATH)
                 content = {'title' : ns+'.*',
                            'timeFieldName': 'time',
-                           'fields': DEFAULT_FIELDS,
+                           'fields': json.dumps(DEFAULT_FIELDS),
                 }
                 r = s.put(url, cert=cert_and_key, data=json.dumps(content))
                 if r.status_code != 200 and r.status_code != 201:
