@@ -43,8 +43,8 @@ if 'protected_patterns' not in config:
 
 PROTECTED_PATTERNS = set(config['protected_patterns'])
 ELASTICSEARCH_URL_PATTERN = "{0}/.kibana/index-pattern/{{0}}.*".format(config['elasticsearch']['base_url'])
-ELASTICSEARCH_QUERY_URL = "{0}/.kibana/index-pattern/_search?q=_type:\"index-pattern\"".format(config['elasticsearch']['base_url'])
-ELASTICSEARCH_QUERY_URL_MORE = "{0}/.kibana/index-pattern/_search?q=_type:\"index-pattern\"&from={{0}}".format(config['elasticsearch']['base_url'])
+ELASTICSEARCH_QUERY_URL = "{0}/.kibana/index-pattern/_search?q=_type:\"index-pattern\"&size=100".format(config['elasticsearch']['base_url'])
+ELASTICSEARCH_QUERY_URL_MORE = "{0}/.kibana/index-pattern/_search?q=_type:\"index-pattern\"&size=100&from={{0}}".format(config['elasticsearch']['base_url'])
 ELASTICSEARCH_CLIENT_CERT_PATH = config['elasticsearch']['client_cert_path']
 ELASTICSEARCH_CLIENT_KEY_PATH = config['elasticsearch']['client_key_path']
 NAMESPACES_URL = "{0}/api/v1/namespaces".format(config['openshift']['api_base_url'])
@@ -262,7 +262,7 @@ def main():
         s.verify = config['elasticsearch']['ca_cert_path']
     while True:
         namespaces = get_namespaces()
-        index_patterns = get_index_patterns()
+        index_patterns = get_index_patterns(s)
         for ns in namespaces:
             if ns+'.*' not in index_patterns:
                 url = ELASTICSEARCH_URL_PATTERN.format(ns)
