@@ -44,6 +44,7 @@ if 'protected_patterns' not in config:
 PROTECTED_PATTERNS = set(config['protected_patterns'])
 ELASTICSEARCH_URL_PATTERN = "{0}/.kibana/index-pattern/{{0}}.*".format(config['elasticsearch']['base_url'])
 ELASTICSEARCH_QUERY_URL = "{0}/.kibana/index-pattern/_search?q=_type:\"index-pattern\"".format(config['elasticsearch']['base_url'])
+ELASTICSEARCH_QUERY_URL_MORE = "{0}/.kibana/index-pattern/_search?q=_type:\"index-pattern\"&from={{0}}".format(config['elasticsearch']['base_url'])
 ELASTICSEARCH_CLIENT_CERT_PATH = config['elasticsearch']['client_cert_path']
 ELASTICSEARCH_CLIENT_KEY_PATH = config['elasticsearch']['client_key_path']
 NAMESPACES_URL = "{0}/api/v1/namespaces".format(config['openshift']['api_base_url'])
@@ -237,18 +238,31 @@ def get_namespaces():
         return set([x['metadata']['name'] for x in obj['items']])
     raise Exception("Failed to get namespaces: [{0}] {1}".format(r.status_code, NAMESPACES_URL))
 
+def get_index_patterns(es_session):
+    all_ip = []
+    r = es_session.get(ELASTICSEARCH_QUERY_URL, cert=(ELASTICSEARCH_CLIENT_CERT_PATH, ELASTICSEARCH_CLIENT_KEY_PATH))
+    if r.status_code != 200:
+        fatal("Failed to get index patterns: [{0}] {1}".format(r.status_code, ELASTICSEARCH_QUERY_URL))
+    es_query_result = r.json()
+    need_more = len(all_ip) < es_query_result['hits']['total']
+
+    while need_more:
+        r = es_session.get(ELASTICSEARCH_QUERY_URL_MORE.format(len(all_ip)), cert=(ELASTICSEARCH_CLIENT_CERT_PATH, ELASTICSEARCH_CLIENT_KEY_PATH))
+        if r.status_code != 200:
+            fatal("Failed to get index patterns: [{0}] {1}".format(r.status_code, ELASTICSEARCH_QUERY_URL))
+        es_query_result = r.json()
+        for ip in es_query_result['hits']['hits']:
+            all_ip.append(ip['_source']['title'])
+        need_more = len(all_ip) < es_query_result['hits']['total']
+    return all_ip
+
 def main():
     s = requests.Session()
     if 'ca_cert_path' in config['elasticsearch']:
         s.verify = config['elasticsearch']['ca_cert_path']
     while True:
         namespaces = get_namespaces()
-        r = s.get(ELASTICSEARCH_QUERY_URL, cert=(ELASTICSEARCH_CLIENT_CERT_PATH, ELASTICSEARCH_CLIENT_KEY_PATH))
-        if r.status_code != 200:
-            fatal("Failed to get index patterns: [{0}] {1}".format(r.status_code, ELASTICSEARCH_QUERY_URL))
-        es_query_result = r.json()
-        # Yes, it's ['hits']['hits'].  Really.
-        index_patterns = set([x['_source']['title'] for x in es_query_result['hits']['hits']])
+        index_patterns = get_index_patterns()
         for ns in namespaces:
             if ns+'.*' not in index_patterns:
                 url = ELASTICSEARCH_URL_PATTERN.format(ns)
