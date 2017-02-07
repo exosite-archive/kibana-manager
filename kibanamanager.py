@@ -57,7 +57,6 @@ DEFAULT_FIELDS = [
     {
         "name": "_index",
         "type": "string",
-        "count": 0,
         "scripted": False,
         "indexed": False,
         "analyzed": False,
@@ -66,7 +65,6 @@ DEFAULT_FIELDS = [
     {
         "name": "docker_container_id",
         "type": "string",
-        "count": 0,
         "scripted": False,
         "indexed": True,
         "analyzed": True,
@@ -75,7 +73,6 @@ DEFAULT_FIELDS = [
     {
         "name": "kubernetes_labels_app",
         "type": "string",
-        "count": 0,
         "scripted": False,
         "indexed": True,
         "analyzed": True,
@@ -84,7 +81,6 @@ DEFAULT_FIELDS = [
     {
         "name": "kubernetes_namespace_id",
         "type": "string",
-        "count": 0,
         "scripted": False,
         "indexed": True,
         "analyzed": True,
@@ -93,7 +89,6 @@ DEFAULT_FIELDS = [
     {
         "name": "hostname",
         "type": "string",
-        "count": 0,
         "scripted": False,
         "indexed": True,
         "analyzed": True,
@@ -102,7 +97,6 @@ DEFAULT_FIELDS = [
     {
         "name": "kubernetes_labels_deploymentconfig",
         "type": "string",
-        "count": 0,
         "scripted": False,
         "indexed": True,
         "analyzed": True,
@@ -111,7 +105,6 @@ DEFAULT_FIELDS = [
     {
         "name": "message",
         "type": "string",
-        "count": 0,
         "scripted": False,
         "indexed": True,
         "analyzed": True,
@@ -120,7 +113,6 @@ DEFAULT_FIELDS = [
     {
         "name": "version",
         "type": "string",
-        "count": 0,
         "scripted": False,
         "indexed": True,
         "analyzed": True,
@@ -129,7 +121,6 @@ DEFAULT_FIELDS = [
     {
         "name": "kubernetes_pod_name",
         "type": "string",
-        "count": 0,
         "scripted": False,
         "indexed": True,
         "analyzed": True,
@@ -138,7 +129,6 @@ DEFAULT_FIELDS = [
     {
         "name": "kubernetes_namespace_name",
         "type": "string",
-        "count": 0,
         "scripted": False,
         "indexed": True,
         "analyzed": True,
@@ -147,7 +137,6 @@ DEFAULT_FIELDS = [
     {
         "name": "kubernetes_labels_deployment",
         "type": "string",
-        "count": 0,
         "scripted": False,
         "indexed": True,
         "analyzed": True,
@@ -156,7 +145,6 @@ DEFAULT_FIELDS = [
     {
         "name": "kubernetes_container_name",
         "type": "string",
-        "count": 0,
         "scripted": False,
         "indexed": True,
         "analyzed": True,
@@ -165,7 +153,6 @@ DEFAULT_FIELDS = [
     {
         "name": "kubernetes_pod_id",
         "type": "string",
-        "count": 0,
         "scripted": False,
         "indexed": True,
         "analyzed": True,
@@ -174,7 +161,6 @@ DEFAULT_FIELDS = [
     {
         "name": "_source",
         "type": "_source",
-        "count": 0,
         "scripted": False,
         "indexed": False,
         "analyzed": False,
@@ -183,7 +169,6 @@ DEFAULT_FIELDS = [
     {
         "name": "time",
         "type": "date",
-        "count": 0,
         "scripted": False,
         "indexed": True,
         "analyzed": False,
@@ -192,7 +177,6 @@ DEFAULT_FIELDS = [
     {
         "name": "kubernetes_host",
         "type": "string",
-        "count": 0,
         "scripted": False,
         "indexed": True,
         "analyzed": True,
@@ -201,7 +185,6 @@ DEFAULT_FIELDS = [
     {
         "name": "_id",
         "type": "string",
-        "count": 0,
         "scripted": False,
         "indexed": False,
         "analyzed": False,
@@ -210,7 +193,6 @@ DEFAULT_FIELDS = [
     {
         "name": "_type",
         "type": "string",
-        "count": 0,
         "scripted": False,
         "indexed": False,
         "analyzed": False,
@@ -219,7 +201,6 @@ DEFAULT_FIELDS = [
     {
         "name": "_score",
         "type": "number",
-        "count": 0,
         "scripted": False,
         "indexed": False,
         "analyzed": False,
