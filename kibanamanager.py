@@ -58,172 +58,172 @@ DEFAULT_FIELDS = [
         "name": "_index",
         "type": "string",
         "count": 0,
-        "scripted": false,
-        "indexed": false,
-        "analyzed": false,
-        "doc_values": false
+        "scripted": False,
+        "indexed": False,
+        "analyzed": False,
+        "doc_values": False
     },
     {
         "name": "docker_container_id",
         "type": "string",
         "count": 0,
-        "scripted": false,
-        "indexed": true,
-        "analyzed": true,
-        "doc_values": false
+        "scripted": False,
+        "indexed": True,
+        "analyzed": True,
+        "doc_values": False
     },
     {
         "name": "kubernetes_labels_app",
         "type": "string",
         "count": 0,
-        "scripted": false,
-        "indexed": true,
-        "analyzed": true,
-        "doc_values": false
+        "scripted": False,
+        "indexed": True,
+        "analyzed": True,
+        "doc_values": False
     },
     {
         "name": "kubernetes_namespace_id",
         "type": "string",
         "count": 0,
-        "scripted": false,
-        "indexed": true,
-        "analyzed": true,
-        "doc_values": false
+        "scripted": False,
+        "indexed": True,
+        "analyzed": True,
+        "doc_values": False
     },
     {
         "name": "hostname",
         "type": "string",
         "count": 0,
-        "scripted": false,
-        "indexed": true,
-        "analyzed": true,
-        "doc_values": false
+        "scripted": False,
+        "indexed": True,
+        "analyzed": True,
+        "doc_values": False
     },
     {
         "name": "kubernetes_labels_deploymentconfig",
         "type": "string",
         "count": 0,
-        "scripted": false,
-        "indexed": true,
-        "analyzed": true,
-        "doc_values": false
+        "scripted": False,
+        "indexed": True,
+        "analyzed": True,
+        "doc_values": False
     },
     {
         "name": "message",
         "type": "string",
         "count": 0,
-        "scripted": false,
-        "indexed": true,
-        "analyzed": true,
-        "doc_values": false
+        "scripted": False,
+        "indexed": True,
+        "analyzed": True,
+        "doc_values": False
     },
     {
         "name": "version",
         "type": "string",
         "count": 0,
-        "scripted": false,
-        "indexed": true,
-        "analyzed": true,
-        "doc_values": false
+        "scripted": False,
+        "indexed": True,
+        "analyzed": True,
+        "doc_values": False
     },
     {
         "name": "kubernetes_pod_name",
         "type": "string",
         "count": 0,
-        "scripted": false,
-        "indexed": true,
-        "analyzed": true,
-        "doc_values": false
+        "scripted": False,
+        "indexed": True,
+        "analyzed": True,
+        "doc_values": False
     },
     {
         "name": "kubernetes_namespace_name",
         "type": "string",
         "count": 0,
-        "scripted": false,
-        "indexed": true,
-        "analyzed": true,
-        "doc_values": false
+        "scripted": False,
+        "indexed": True,
+        "analyzed": True,
+        "doc_values": False
     },
     {
         "name": "kubernetes_labels_deployment",
         "type": "string",
         "count": 0,
-        "scripted": false,
-        "indexed": true,
-        "analyzed": true,
-        "doc_values": false
+        "scripted": False,
+        "indexed": True,
+        "analyzed": True,
+        "doc_values": False
     },
     {
         "name": "kubernetes_container_name",
         "type": "string",
         "count": 0,
-        "scripted": false,
-        "indexed": true,
-        "analyzed": true,
-        "doc_values": false
+        "scripted": False,
+        "indexed": True,
+        "analyzed": True,
+        "doc_values": False
     },
     {
         "name": "kubernetes_pod_id",
         "type": "string",
         "count": 0,
-        "scripted": false,
-        "indexed": true,
-        "analyzed": true,
-        "doc_values": false
+        "scripted": False,
+        "indexed": True,
+        "analyzed": True,
+        "doc_values": False
     },
     {
         "name": "_source",
         "type": "_source",
         "count": 0,
-        "scripted": false,
-        "indexed": false,
-        "analyzed": false,
-        "doc_values": false
+        "scripted": False,
+        "indexed": False,
+        "analyzed": False,
+        "doc_values": False
     },
     {
         "name": "time",
         "type": "date",
         "count": 0,
-        "scripted": false,
-        "indexed": true,
-        "analyzed": false,
-        "doc_values": true
+        "scripted": False,
+        "indexed": True,
+        "analyzed": False,
+        "doc_values": True
     },
     {
         "name": "kubernetes_host",
         "type": "string",
         "count": 0,
-        "scripted": false,
-        "indexed": true,
-        "analyzed": true,
-        "doc_values": false
+        "scripted": False,
+        "indexed": True,
+        "analyzed": True,
+        "doc_values": False
     },
     {
         "name": "_id",
         "type": "string",
         "count": 0,
-        "scripted": false,
-        "indexed": false,
-        "analyzed": false,
-        "doc_values": false
+        "scripted": False,
+        "indexed": False,
+        "analyzed": False,
+        "doc_values": False
     },
     {
         "name": "_type",
         "type": "string",
         "count": 0,
-        "scripted": false,
-        "indexed": false,
-        "analyzed": false,
-        "doc_values": false
+        "scripted": False,
+        "indexed": False,
+        "analyzed": False,
+        "doc_values": False
     },
     {
         "name": "_score",
         "type": "number",
         "count": 0,
-        "scripted": false,
-        "indexed": false,
-        "analyzed": false,
-        "doc_values": false
+        "scripted": False,
+        "indexed": False,
+        "analyzed": False,
+        "doc_values": False
     }
 ]
 
