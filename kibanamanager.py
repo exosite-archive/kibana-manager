@@ -260,6 +260,7 @@ def main():
                 r = s.put(url, cert=cert_and_key, data=json.dumps(content))
                 if r.status_code != 200 and r.status_code != 201:
                     print("Failed to create Kibana index pattern for OpenShift namespace {0} (response code {1})".format(ns, r.status_code), file=sys.stderr)
+                    print(r.text, file=sys.stderr)
                 else:
                     print("Created Kibana index pattern for OpenShift namespace {0})".format(ns))
         for pattern in index_patterns:
